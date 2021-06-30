@@ -42,7 +42,8 @@ public class walk : MonoBehaviour
         else
         {
             anim.Play("walk");
-            leftLeg.useSpring = false; rightLeg.useSpring = false;
+            //leftLeg.useSpring = false; rightLeg.useSpring = false;
+            leftLeg.useSpring = true; rightLeg.useSpring = true;
         }
         //走完一步以后要恢复平衡
     }
