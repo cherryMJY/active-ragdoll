@@ -74,9 +74,11 @@ public class arms : MonoBehaviour
         {
             if (TargetMode)
             {
-                target.localEulerAngles = new Vector3(-cam.eulerAngles.x, 0, 0);
+                //target.localEulerAngles = new Vector3(-cam.eulerAngles.x, 0, 0);
+                target.localEulerAngles = new Vector3(0, -cam.eulerAngles.y, 0);
+                
                 lowerArm.useSpring = true;
-                if (com) { com.rotation = Quaternion.LookRotation(camRot.forward); }
+              //  if (com) { com.rotation = Quaternion.LookRotation(camRot.forward); }
             }
             else
             {
@@ -86,7 +88,9 @@ public class arms : MonoBehaviour
         }
         else
         {
-            target.localEulerAngles = new Vector3(90, 0, 0);
+            // target.localEulerAngles = new Vector3(90, 0, 0);
+            target.localEulerAngles = new Vector3(0, 90, 0);
+            //lowerArm.useSpring = true;
             lowerArm.useSpring = false;
         }
     }
@@ -94,8 +98,19 @@ public class arms : MonoBehaviour
     void LateUpdate()
     {
         if (invert)
+        {
+            Debug.Log("1");
             joint.targetRotation = Quaternion.Inverse(target.localRotation * startingRotation);
+        }
         else
+        {
+            Debug.Log("2");
+            //Debug.Log("2");
+            Debug.Log("a" + target.localRotation);
+            Debug.Log("b" + startingRotation);
             joint.targetRotation = target.localRotation * startingRotation;
+            Debug.Log("c"+ joint.targetRotation);
+        }
+          
     }
 }
